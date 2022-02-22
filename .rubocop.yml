@@ -8,5 +8,11 @@ AllCops:
 Metrics/BlockLength:
   IgnoredMethods: ['describe', 'context']
 
+Style/NumericLiterals:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
 Documentation:
   Enabled: false

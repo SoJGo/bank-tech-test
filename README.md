@@ -50,5 +50,12 @@ This is a real opportunity to put our TDD to the T. As such I will be following 
 | my_account.deposit(2000.00)    | 14/01/2023 \|\| \|\| 500.00 \|\| 2500.00   |
 | my_account.withdraw(500.00)    | 13/01/2023 \|\| 2000.00 \|\| \|\| 3000.00  |
 | my_account.statement           | 10/01/2023 \|\| 1000.00 \|\| \|\| 1000.00  |
+||
+||
 
-## Self-assessment
+At this juncture I thought carefully about refactoring and extracting into a Transaction class. I also introduced methods for converting the balance, credit and debit values to pence, storing them as integers to avoid a cumulative skew from float inaccuracy. These figures are then only converted back when necessary for display purposes, as below:
+
+<div align="center">
+  <img src="images/bank_tech_test1.png" alt="UML image one" width="400">
+</div>
+
