@@ -8,7 +8,12 @@ class BankAccount
 
   def deposit(amount)
     @balance += amount
-    @transactions.unshift([Time.now, amount, @balance])
+    @transactions.unshift([Time.now, amount, nil, @balance])
+  end
+
+  def withdraw(amount)
+    @balance -= amount
+    @transactions.unshift([Time.now, nil, amount, @balance])
   end
 
   def statement
@@ -17,7 +22,7 @@ class BankAccount
   end
 
   private
-  
+
   def print_transactions
     return if @transactions.empty?
 
@@ -27,8 +32,9 @@ class BankAccount
   end
 
   def format_transaction(transaction)
-    "#{transaction[0].strftime('%d/%m/%Y')} || " \
-      "#{format('%.2f', transaction[1])} || || " \
-      "#{format('%.2f', transaction[2])}"
+    "#{transaction[0].strftime('%d/%m/%Y')} || " +
+      (transaction[1] ? "#{format('%.2f', transaction[1])} || " : '|| ') +
+      (transaction[2] ? "#{format('%.2f', transaction[2])} || " : '|| ') +
+      format('%.2f', transaction[3]).to_s
   end
 end

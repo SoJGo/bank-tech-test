@@ -39,4 +39,16 @@ describe BankAccount do
       end
     end
   end
+
+  describe '#withdraw' do
+    context 'when user deposits 1000 then withdraws 500' do
+      it 'shows 500.00 in debit and 1500.00 balance at the top' do
+        my_account.deposit(2000)
+        my_account.withdraw(500)
+        expect { my_account.statement }.to output(
+          "#{header}31/12/1999 || || 500.00 || 1500.00\n31/12/1999 || 2000.00 || || 2000.00\n"
+        ).to_stdout
+      end
+    end
+  end
 end
