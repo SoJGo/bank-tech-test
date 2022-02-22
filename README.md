@@ -32,14 +32,18 @@ This is a real opportunity to put our TDD to the T. As such I will be following 
 
 | Input                          | Output |
 | -----------                    | ----------- |
-| Before all:
-| my_account = BankAccount.new
+| (Before each do:               | my_account = BankAccount.new) |
 ||
 | my_account.statement           | date \|\| credit \|\| debit \|\| balance   |
+||
 ||
 | my_account.deposit(1000.00)    | date \|\| credit \|\| debit \|\| balance   |
 | my_account.statement           | 10/01/2023 \|\| 1000.00 \|\| \|\| 1000.00  |
 ||
+||
+| my_account.deposit(1000.00)    | date \|\| credit \|\| debit \|\| balance   |
+| my_account.deposit(2000.00)    | 13/01/2023 \|\| 2000.00 \|\| \|\| 3000.00  |
+| my_account.statement           | 10/01/2023 \|\| 1000.00 \|\| \|\| 1000.00  |
 ||
 
 ## Self-assessment
