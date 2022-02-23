@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative 'transaction'
+require_relative 'statement'
+require_relative 'statement_format'
 
 class BankAccount
   def initialize(transaction: Transaction)
@@ -10,34 +12,26 @@ class BankAccount
   end
 
   def deposit(amount)
-    pence_credit = to_pence(amount)
-    @balance += pence_credit
+    @balance += (pence_credit = to_pence(amount))
     @transaction_log.unshift(@transaction.new(credit: pence_credit, balance: @balance))
     "#{amount} deposited. Thank you for banking with us."
   end
 
   def withdraw(amount)
-    pence_debit = to_pence(amount)
-    @balance -= pence_debit
+    @balance -= (pence_debit = to_pence(amount))
     @transaction_log.unshift(@transaction.new(debit: pence_debit, balance: @balance))
     "#{amount} withdrawn. Thank you for banking with us."
   end
 
-  def statement
-    puts 'date || credit || debit || balance'
-    print_transactions
+  def statement(statement: Statement, statement_format: StatementFormat)
+    formatted_transactions = @transaction_log.map do |transaction|
+      transaction.to_statement_format(statement_format)
+    end
+    statement.new(formatted_transactions)
     'Thank you for banking with us.'
   end
 
   private
-
-  def print_transactions
-    return if @transaction_log.empty?
-
-    @transaction_log.each do |transaction|
-      puts transaction.to_s
-    end
-  end
 
   def to_pence(amount)
     (amount * 100).to_i

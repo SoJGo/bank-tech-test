@@ -56,6 +56,10 @@ This is a real opportunity to put our TDD to the T. As such I will be following 
 At this juncture I thought carefully about refactoring and extracting into a Transaction class. I also introduced methods for converting the balance, credit and debit values to pence, storing them as integers to avoid a cumulative skew from float inaccuracy. These figures are then only converted back when necessary for display purposes, as below:
 
 <div align="center">
-  <img src="images/bank_tech_test1.png" alt="UML image one" width="400">
+  <img src="images/bank_tech_test1.png" alt="UML image one" width="500">
 </div>
 
+My next step in refactoring was to extract a Statement class that would be responsible for the output of the statement to the terminal. I also introduced a StatementFormat class which wraps the raw data from the Transaction instance and converts it to presentable strings. Both of these classes are injected when calling the to_statement_format method on a transaction, with the aim of making changing output formatting a thing of ease. The array that is then passed to the Statement class upon initialization is full of StatementFormat instances, which return a formatted line of the statement when the line method is called on them. I thought this was quite a tidy way of managing information for presentation without exposing the raw data in a transaction.
+<div align="center">
+  <img src="images/bank_tech_test2.png" alt="UML image two" width="800">
+</div>

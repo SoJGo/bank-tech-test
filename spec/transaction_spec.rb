@@ -3,21 +3,16 @@
 require 'transaction'
 
 describe Transaction do
-  describe '#to_s' do
-    context 'when the transaction is positive' do
-      it 'returns information in a statement format' do
-        allow(Time).to receive(:now).and_return(Time.new(1999, 12, 31))
-        transaction = described_class.new(credit: 100000, balance: 100000)
-        expect(transaction.to_s).to eq('31/12/1999 || 1000.00 || || 1000.00')
-      end
-    end
+  let(:statement_format_class) { class_double('StatementFormat') }
+  let(:transaction) { described_class.new(balance: 1000, credit: 1000) }
 
-    context 'when the transaction is negative' do
-      it 'returns information in a statement format' do
-        allow(Time).to receive(:now).and_return(Time.new(1999, 12, 31))
-        transaction = described_class.new(debit: 100000, balance: 100000)
-        expect(transaction.to_s).to eq('31/12/1999 || || 1000.00 || 1000.00')
-      end
+  describe '#to_statement_format' do
+    it 'creates a new StatementFormat instance' do
+      allow(Time).to receive(:now).and_return(Time.new(1999, 12, 31))
+      expect(statement_format_class).to receive(:new).with(
+        balance: 1000, credit: 1000, debit: nil, date: Time.new(1999, 12, 31)
+      )
+      transaction.to_statement_format(statement_format_class)
     end
   end
 end

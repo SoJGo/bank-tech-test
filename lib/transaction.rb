@@ -8,20 +8,9 @@ class Transaction
     @debit = debit
   end
 
-  def to_s
-    "#{format_date} || " +
-      (@credit ? "#{to_pounds(@credit)} || " : '|| ') +
-      (@debit ? "#{to_pounds(@debit)} || " : '|| ') +
-      to_pounds(@balance).to_s
-  end
-
-  private
-
-  def format_date
-    @date.strftime('%d/%m/%Y')
-  end
-
-  def to_pounds(amount)
-    format('%#.2f', (amount / 100))
+  def to_statement_format(statement_format)
+    statement_format.new(
+      balance: @balance, credit: @credit, debit: @debit, date: @date
+    )
   end
 end
