@@ -1,6 +1,52 @@
-# Bank tech test
+# Bank Tech Test
 
-As part of our code quality week at Makers we have been tasked with creating a program mimicking a bank account to the following specification.
+As part of our code quality week at Makers we have been tasked with employing exemplary TDD processes in creating a program mimicking a bank account to the specifications which can be found below. Read on to see if you think I have succeeded.
+
+## Installation
+---
+```
+$ git clone https://github.com/SoJGo/bank-tech-test.git
+$ cd bank_tech_test
+$ bundle
+```
+
+## Tests
+---
+```
+$ rspec
+```
+Or use the following for documentation format:
+```
+$ rspec -fd
+```
+
+## Linting
+---
+```
+$ rubocop
+```
+
+## Usage
+---
+```ruby
+You@YourComputer bank_tech_test $ irb      
+ :001 > require './lib/customer_account'
+ => true 
+ :002 > my_account = CustomerAccount.new
+ => #<CustomerAccount:0x0000000113574f18 @bank_account=#<BankAccount:0x0000000113574e78 @balance=0, @transaction=Transaction, @transaction_log=[]>> 
+ :003 > my_account.deposit(13)
+ => "£13.00 deposited. Thank you for banking with us." 
+ :004 > my_account.deposit(42.00)
+ => "£42.00 deposited. Thank you for banking with us." 
+ :005 > my_account.withdraw(7)
+ => "£7.00 withdrawn. Thank you for banking with us." 
+ :006 > my_account.statement
+date || credit || debit || balance
+31/12/1999 || || 7.00 || 48.00                                 
+31/12/1999 || 42.00 || || 55.00                                
+31/12/1999 || 13.00 || || 13.00                                
+ => "Thank you for banking with us. Have a lovely day now."                           
+```
 
 ## Specification
 ---
@@ -63,3 +109,19 @@ My next step in refactoring was to extract a Statement class that would be respo
 <div align="center">
   <img src="images/bank_tech_test2.png" alt="UML image two" width="800">
 </div>
+
+I went on to create a CustomerAccount class to act as the interface for the user, leaving the BankAccount class to store the transactions and balance and communicate with the other classes. The CustomerAccount is now responsible for ensuring that the customer's input is valid. This is currently set up as a one to one relationship with the BankAccount, but could easily be adapted to use the CustomerAccount to hold various different accounts belonging to an individual.
+<div align="center">
+  <img src="images/bank_tech_test3.png" alt="UML image three" width="800">
+</div>
+
+## Good Points
+---
+- Testing including feature tests is 100%
+- Testing with just unit tests is +99%
+- Successfully linted using Rubocop
+
+## Points for consideration
+---
+- Specification makes no mention of an overdraft limit, I would query this as it is currently far too good a bank account to have.
+- CustomerAccount could be modified to hold a selection of accounts, with the individual specifying which one to access at the time.

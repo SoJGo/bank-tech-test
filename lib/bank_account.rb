@@ -11,16 +11,14 @@ class BankAccount
     @transaction = transaction
   end
 
-  def deposit(amount)
-    @balance += (pence_credit = to_pence(amount))
+  def deposit(credit)
+    @balance += (pence_credit = to_pence(credit))
     @transaction_log.unshift(@transaction.new(credit: pence_credit, balance: @balance))
-    "#{amount} deposited. Thank you for banking with us."
   end
 
-  def withdraw(amount)
-    @balance -= (pence_debit = to_pence(amount))
+  def withdraw(debit)
+    @balance -= (pence_debit = to_pence(debit))
     @transaction_log.unshift(@transaction.new(debit: pence_debit, balance: @balance))
-    "#{amount} withdrawn. Thank you for banking with us."
   end
 
   def statement(statement: Statement, statement_format: StatementFormat)
@@ -28,7 +26,6 @@ class BankAccount
       transaction.to_statement_format(statement_format)
     end
     statement.new(formatted_transactions)
-    'Thank you for banking with us.'
   end
 
   private

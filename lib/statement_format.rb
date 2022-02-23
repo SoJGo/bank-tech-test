@@ -19,6 +19,6 @@ class StatementFormat
   end
 
   def format_amount(amount)
-    amount ? format('%#.2f', (amount / 100)).to_s : '||'
+    amount ? format('%.2f', (amount / 100)).to_s : '||'
   end
 end

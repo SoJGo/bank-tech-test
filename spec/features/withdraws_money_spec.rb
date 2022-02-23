@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'bank_account'
+require 'customer_account'
 
 describe 'Withdrawing money' do
   context 'when user withdraws 500 after 1000 and 2000 deposits' do
     it 'statement shows 500.00 in debit and 2500.00 balance at the top' do
-      my_account = BankAccount.new
+      my_account = CustomerAccount.new
       allow(Time).to receive(:now).and_return(Time.new(2023, 01, 10))
       my_account.deposit(1000)
       allow(Time).to receive(:now).and_return(Time.new(2023, 01, 13))
