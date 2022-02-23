@@ -6,7 +6,7 @@ As part of our code quality week at Makers we have been tasked with employing ex
 ---
 ```
 $ git clone https://github.com/SoJGo/bank-tech-test.git
-$ cd bank_tech_test
+$ cd bank-tech-test
 $ bundle
 ```
 
@@ -124,4 +124,4 @@ I went on to create a CustomerAccount class to act as the interface for the user
 ## Points for consideration
 ---
 - Specification makes no mention of an overdraft limit, I would query this as it is currently far too good a bank account to have.
-- CustomerAccount could be modified to hold a selection of accounts, with the individual specifying which one to access at the time.
+- CustomerAccount could be modified as a future feature, to hold a selection of accounts, with the individual specifying which one to access at the time.

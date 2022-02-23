@@ -22,7 +22,7 @@ describe CustomerAccount do
     context 'when the user enters a string' do
       it 'raises an error' do
         expect { my_account.deposit('banana') }.to raise_error(
-          'Please enter a positve amount of Pounds'
+          'Please enter a positve pounds amount'
         )
       end
     end
@@ -30,7 +30,7 @@ describe CustomerAccount do
     context 'when the user enters 3 decimal places' do
       it 'raises an error' do
         expect { my_account.deposit(100.001) }.to raise_error(
-          'Please enter a positve amount of Pounds'
+          'Please enter a positve pounds amount'
         )
       end
     end
@@ -47,7 +47,7 @@ describe CustomerAccount do
     context 'when the user enters a string' do
       it 'raises an error' do
         expect { my_account.withdraw('banana') }.to raise_error(
-          'Please enter a positve amount of Pounds'
+          'Please enter a positve pounds amount'
         )
       end
     end
@@ -55,7 +55,7 @@ describe CustomerAccount do
     context 'when the user enters 3 decimal places' do
       it 'raises an error' do
         expect { my_account.withdraw(100.001) }.to raise_error(
-          'Please enter a positve amount of Pounds'
+          'Please enter a positve pounds amount'
         )
       end
     end

@@ -7,7 +7,7 @@ describe 'Depositing money' do
     it 'raises an error' do
       my_account = CustomerAccount.new
       expect{ my_account.deposit('banana') }.to raise_error(
-        'Please enter a positve amount of Pounds'
+        'Please enter a positve pounds amount'
       )
     end
   end
@@ -16,7 +16,7 @@ describe 'Depositing money' do
     it 'raises an error' do
       my_account = CustomerAccount.new
       expect{ my_account.deposit(1000.001) }.to raise_error(
-        'Please enter a positve amount of Pounds'
+        'Please enter a positve pounds amount'
       )
     end
   end
@@ -27,7 +27,7 @@ describe 'Withdrawing money' do
     it 'raises an error' do
       my_account = CustomerAccount.new
       expect{ my_account.withdraw('banana') }.to raise_error(
-        'Please enter a positve amount of Pounds'
+        'Please enter a positve pounds amount'
       )
     end
   end
@@ -36,7 +36,7 @@ describe 'Withdrawing money' do
     it 'raises an error' do
       my_account = CustomerAccount.new
       expect{ my_account.withdraw(1000.001) }.to raise_error(
-        'Please enter a positve amount of Pounds'
+        'Please enter a positve pounds amount'
       )
     end
   end

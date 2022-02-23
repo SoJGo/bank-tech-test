@@ -13,8 +13,10 @@ describe 'Withdrawing money' do
       allow(Time).to receive(:now).and_return(Time.new(2023, 01, 14))
       my_account.withdraw(500)
       expect { my_account.statement }.to output(
-        "date || credit || debit || balance\n14/01/2023 || || 500.00 || 2500.00\n" \
-        "13/01/2023 || 2000.00 || || 3000.00\n10/01/2023 || 1000.00 || || 1000.00\n"
+        "date || credit || debit || balance\n" \
+        "14/01/2023 || || 500.00 || 2500.00\n" \
+        "13/01/2023 || 2000.00 || || 3000.00\n" \
+        "10/01/2023 || 1000.00 || || 1000.00\n"
       ).to_stdout
     end
   end

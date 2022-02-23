@@ -10,7 +10,9 @@ describe BankAccount do
   describe '#deposit' do
     context 'when the user depostis 1000' do
       it 'creates a new transaction with credit 100000 and balance 100000' do
-        expect(transaction_class).to receive(:new).with(credit: 100000, balance: 100000)
+        expect(transaction_class).to receive(:new).with(
+          credit: 100000, balance: 100000
+        )
         bank_account.deposit(1000)
       end
     end
@@ -19,7 +21,9 @@ describe BankAccount do
   describe '#withdraw' do
     context 'when user withdraws 500' do
       it 'creates a new transaction with debit 50000 and balance -50000' do
-        expect(transaction_class).to receive(:new).with(debit: 50000, balance: -50000)
+        expect(transaction_class).to receive(:new).with(
+          debit: 50000, balance: -50000
+        )
         bank_account.withdraw(500)
       end
     end

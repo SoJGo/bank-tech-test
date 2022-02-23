@@ -8,14 +8,14 @@ class CustomerAccount
   end
 
   def deposit(amount)
-    raise 'Please enter a positve amount of Pounds' unless vaild_amount?(amount)
+    raise 'Please enter a positve pounds amount' unless vaild_amount?(amount)
 
     @bank_account.deposit(amount)
     "£#{format('%.2f', amount)} deposited. Thank you for banking with us."
   end
 
   def withdraw(amount)
-    raise 'Please enter a positve amount of Pounds' unless vaild_amount?(amount)
+    raise 'Please enter a positve pounds amount' unless vaild_amount?(amount)
 
     @bank_account.withdraw(amount)
     "£#{format('%.2f', amount)} withdrawn. Thank you for banking with us."
@@ -23,7 +23,7 @@ class CustomerAccount
 
   def statement
     @bank_account.statement
-    'Thank you for banking with us.'
+    'Thank you for banking with us. Have a lovely day now.'
   end
 
   private

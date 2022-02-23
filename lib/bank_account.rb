@@ -13,12 +13,16 @@ class BankAccount
 
   def deposit(credit)
     @balance += (pence_credit = to_pence(credit))
-    @transaction_log.unshift(@transaction.new(credit: pence_credit, balance: @balance))
+    @transaction_log.unshift(
+      @transaction.new(credit: pence_credit, balance: @balance)
+    )
   end
 
   def withdraw(debit)
     @balance -= (pence_debit = to_pence(debit))
-    @transaction_log.unshift(@transaction.new(debit: pence_debit, balance: @balance))
+    @transaction_log.unshift(
+      @transaction.new(debit: pence_debit, balance: @balance)
+    )
   end
 
   def statement(statement: Statement, statement_format: StatementFormat)
